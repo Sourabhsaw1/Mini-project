@@ -1,0 +1,104 @@
+/* .body{
+    background: blue;
+} */
+
+/* 
+.grid{
+background:url(artistic-blurry-colorful-wallpaper-background.jpg);
+/* display:grid;
+grid-template-columns: repeat(4, 100px);
+grid-gap: 5px;
+justify-content: center; */
+
+
+
+/* General Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  /* Header Styling */
+  h1 {
+    color: wheat;
+    margin-bottom: 20px;
+    font-size: 36px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  /* Game Grid Styling */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(4, 100px);
+    gap: 5px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Tile Styling */
+  .tile {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    color: white;
+    font-size: 28px;
+    line-height: 100px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 1.0 ease-in;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .tile:hover {
+    background-color: rgba(255, 0, 0, 0.322);
+  }
+  
+  .tile.empty {
+    background-color:black;
+    cursor: default;
+    box-shadow: none;
+  }
+  
+  /* Button Styling */
+  button {
+    background-color: green;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #218838;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 600px) {
+    .grid {
+      grid-template-columns: repeat(3, 90px);
+      grid-template-rows: repeat(3, 90px);
+    }
+    .tile {
+      font-size: 24px;
+      width: 90px;
+      height: 90px;
+    }
+  }
+  

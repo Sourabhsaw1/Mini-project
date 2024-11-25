@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puzzle Game</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 100px); grid-gap: 5px; justify-content: center; }
+    .tile { width: 100px; height: 100px; background-color: red; color: white; font-size: 24px; line-height: 100px; text-align: center; cursor: pointer; }
+    .empty { background-color: #ddd; cursor: default; }
+  </style>
+</head>
+<body>
+  <h1>Puzzle Game</h1>
+  <div id="game" class="grid"></div>
+  <button onclick="startGame()">Shuffle</button>
+  <script>
+    const grid = document.getElementById('game');
+    let tiles = [];
+
+    function createGrid() {
+      tiles = [...Array(15).keys(), null]; // 15 tiles + 1 empty space
+      tiles.sort(() => Math.random() - 0.5); // Shuffle tiles
+      updateGrid();
+    }
+
+    function updateGrid() {
+      grid.innerHTML = '';
+      tiles.forEach((tile, index) => {
+        const div = document.createElement('div');
+        div.className = tile !== null ? 'tile' : 'tile empty';
+        div.textContent = tile !== null ? tile + 1 : '';
+        div.onclick = () => moveTile(index);
+        grid.appendChild(div);
+      });
+    }
+
+    function moveTile(index) {
+      const emptyIndex = tiles.indexOf(null);
+      const rowDiff = Math.floor(index / 4) - Math.floor(emptyIndex / 4);
+      const colDiff = (index % 4) - (emptyIndex % 4);
+
+      if (Math.abs(rowDiff) + Math.abs(colDiff) === 1) { // Check adjacency
+        [tiles[index], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[index]];
+        updateGrid();
+        checkWin();
+      }
+    }
+
+    function checkWin() {
+      if (tiles.slice(0, -1).every((val, i) => val === i)) {
+        alert('You won!');
+      }
+    }
+
+    function startGame() {
+      createGrid();
+    }
+
+    createGrid();
+  </script>
+</body>
+</html>
